@@ -13,7 +13,7 @@ function Hero() {
         backgroundPosition: "right"
     }
     return (
-        <section className="py-8" style={bg}>
+        <section className="pt-20" style={bg}>
             <div className="container mx-auto md:px-20">
 
                 <Swiper

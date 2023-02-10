@@ -11,7 +11,7 @@ function Cards({ product }) {
             <div className="card-body">
                 <h2 className="card-title">{title.slice(0, 30)}</h2>
                 <p>{description.slice(0, 100)}</p>
-                <p>{price}</p>
+                <p className='font-bold text-lg'>Price: ${price}</p>
                 <div className="card-actions justify-end">
                     <Link href={`/products/${id}`}>
                         <button className="btn btn-primary">Buy Now</button>

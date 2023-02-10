@@ -1,4 +1,5 @@
 import Cards from '@/components/_child/cards'
+import Format from '@/layout/format'
 import useSWR from 'swr'
 
 const fetcher = async () => {
@@ -12,22 +13,24 @@ function ProductList() {
     if (error) return 'An error has occurred'
     if (!data) return 'Loading...'
     return (
-        <div className="container mx-auto md:px-10 py-10">
-            <h2 className="font-bold text-4xl py-12 text-center">Latest Products</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {
-                    data.map(product => {
-                        return (
-                            <div key={product.id}>
-                                <Cards
-                                    product={product}
-                                />
-                            </div>
-                        )
-                    })
-                }
+        <Format>
+            <div className="container mx-auto md:px-10 py-10">
+                <h2 className="font-bold text-4xl pb-12 text-center">All Products</h2>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {
+                        data.map(product => {
+                            return (
+                                <div key={product.id}>
+                                    <Cards
+                                        product={product}
+                                    />
+                                </div>
+                            )
+                        })
+                    }
+                </div>
             </div>
-        </div>
+        </Format>
     )
 }
 

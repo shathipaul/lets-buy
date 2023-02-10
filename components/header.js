@@ -1,14 +1,26 @@
-import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { ImCart } from "react-icons/im";
 
 
 function Header() {
+    const [cart, setCart] = useState([])
     const menuItems = <>
         <li><Link href='/'>Home</Link></li>
         <li><Link href='/products'>Products</Link></li>
         <li><Link href='/login'>Login</Link></li>
+        <li><Link href='/admin'>Admin</Link></li>
     </>
+
+
+    useEffect(() => {
+        const getProduct = localStorage.getItem('product')
+        const product = JSON.parse(getProduct)
+        if (product) {
+            setCart(product)
+        }
+    }, [])
+
 
     return (
         <div className="navbar bg-gray-300">
@@ -32,19 +44,13 @@ function Header() {
                 <div className="dropdown dropdown-end">
                     <label tabIndex={0} className="btn btn-ghost btn-circle">
                         <div className="indicator">
-                            <ImCart className="h-5 w-5" />
-                            <span className="badge badge-sm indicator-item">0</span>
+                            <Link href='/cart'>
+                                <ImCart className="h-5 w-5" />
+                            </Link>
+
+                            <span className="badge badge-sm indicator-item">{cart.length}</span>
                         </div>
                     </label>
-                    <div tabIndex={0} className="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow">
-                        <div className="card-body">
-                            <span className="font-bold text-lg">0 Items</span>
-                            <span className="text-info">Subtotal: $999</span>
-                            <div className="card-actions">
-                                <button className="btn btn-primary btn-block">View cart</button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
